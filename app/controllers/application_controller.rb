@@ -6,5 +6,6 @@ class ApplicationController < ActionController::Base
 
   # sets security-related headers automatically based on the configuration located on security_headers initializer
   # skip_before_filter :set_csp_header, :only => :tinymce_page
-  ensure_security_headers
+  # below code is no longer necessary see here: https://github.com/twitter/secureheaders/blob/master/upgrading-to-3-0.md
+  # ensure_security_headers
 end
