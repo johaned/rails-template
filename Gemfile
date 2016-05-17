@@ -10,7 +10,6 @@ gem 'uglifier', '>= 3.0.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.1.1'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
 # Use haml
 gem 'haml', '~> 4.0.7'
 gem 'less-rails', '~> 2.7.1'
@@ -36,6 +35,7 @@ gem 'mongoid', '~> 5.1.0'
 gem 'devise', '~> 3.5.10'
 gem 'mongoid_search'
 gem 'will_paginate_mongoid'
+gem 'mongoid-sequence', github: 'johaned/mongoid-sequence', tag: '1.0.0'
 gem 'cancancan', '~> 1.14.0'
 gem 'secure_headers', '~> 3.3.1'
 gem 'autoprefixer-rails', '~> 6.3.6.1'
