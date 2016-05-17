@@ -1,4 +1,4 @@
-::SecureHeaders::Configuration.configure do |config|
+::SecureHeaders::Configuration.default do |config|
 
   # Strict Transport Security
   # is a security feature that lets a web site tell browsers that it should only be communicated with using HTTPS, instead of using HTTP.
@@ -11,23 +11,18 @@
   # see more info here:
   # https://goo.gl/ldjc5h
   config.hsts = if Rails.env.production?
-    {
-      # The time, in seconds, that the browser should remember that this site is only to be accessed using HTTPS.
-      :max_age => 20.years.to_i,
-      # If this optional parameter is specified, this rule applies to all of the site's subdomains as well.
-      :include_subdomains => true
-    }
-  else
-    false
+    # The time, in seconds, that the browser should remember that this site is only to be accessed using HTTPS.
+    # If this optional parameter is specified, this rule applies to all of the site's subdomains as well.
+    "max-age=#{20.years.to_i}; includeSubdomains; preload"
   end
 
   # Prevents your content from being framed and potentially clickjacked
   config.x_frame_options = 'DENY'
   # Prevent content type sniffing
   # This is a security feature that helps prevent attacks based on MIME-type confusion.
-  config.x_content_type_options = "nosniff"
+  config.x_content_type_options = 'nosniff'
   # Cross site scripting heuristic filter for IE/Chrome
-  config.x_xss_protection = {:value => 1, :mode => 'block'}
+  config.x_xss_protection = '1; mode=block'
   # Prevent file downloads opening
   config.x_download_options = 'noopen'
   # Restrict Adobe Flash Player's access to data
@@ -49,18 +44,17 @@
   config.csp = {
     # It's often valuable to send extra information in the report uri that is not available in the reports themselves. Namely, "was the policy enforced"
     # and "where did the report come from"
-    :app_name => "rails_foo", # do not use spaces here
-    :tag_report_uri => true,
-    :enforce => true,
+    report_only: true,
+    preserve_schemes: true,
     # The default-src directive defines the security policy for types of content which are not expressly called out by more specific directives.
-    :default_src => "https: self inline eval",
+    default_src: %w(https: http: 'self' 'unsafe-inline' 'unsafe-eval'),
     # The frame-src directive specifies valid sources for web workers and nested browsing contexts loading using elements such as <frame> and <iframe>.
-    :frame_src => "https: http:.twimg.com http://itunes.apple.com", # just an example
+    frame_src: %w(https: http://itunes.apple.com), # just an example
     # The img-src directive specifies valid sources of images and favicons.
-    :img_src => "https:",
+    img_src: %w(https: http:),
     # allows a browser to send reports back to the host if their security policy was breached
     # :report_uri => '/uri-directive'
-    :report_uri => Rails.application.secrets.report_uri
+    report_uri: %w(Rails.application.secrets.report_uri)
   }
 
   # Public Key Pinning
@@ -79,15 +73,16 @@
   # https://goo.gl/yrx3ex
   # http://goo.gl/zFnaaW
   config.hpkp = {
+    app_name: 'eniro', # do not use spaces here
     # The time, in seconds, that the browser should remember that this site is only to be accessed using one of the pinned keys.
-    :max_age => 60.days.to_i,
+    max_age: 60.days.to_i,
     # If this optional parameter is specified, this rule applies to all of the site's subdomains as well.
-    :include_subdomains => true,
+    include_subdomains: true,
     # allows a browser to send reports back to the host if their security policy was breached
-    :report_uri => Rails.application.secrets.report_uri,
+    report_uri: Rails.application.secrets.report_uri,
     # The quoted string is the Base64 encoded Subject Public Key Information (SPKI) fingerprint. It is possible to specify multiple pins
     # for different public keys. Some browsers might allow other hashing algorithms than SHA-256 in the future.
-    :pins => [
+    pins: [
       {:sha256 => 'abc'},
       {:sha256 => '123'}
     ]
