@@ -6,11 +6,11 @@ A base template for deploying Rails applications.
 
 The following versions are very important to keep in mind. We've done this because we think that the Ruby, Rails and ORM type and versions are the ones that apply the most constraints to a starter template.
 
-  - Ruby 2.2.0
+  - Ruby 2.3.1
 
-  - Rails 4.2.2
+  - Rails 4.2.6
 
-  - Mongoid 4.0.2
+  - Mongoid 5.1.0
 
 Also this template uses [Zeus](https://github.com/burke/zeus) which preloads your Rails app so that your normal development tasks such as console, server, generate, and specs/tests take less than one second.
 
@@ -109,7 +109,7 @@ https://goo.gl/ldjc5h
 Is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.
 
 *Browser compatibility:*
- 
+
 - IE: Edge
 - Chrome: > 25
 - Firefox: > 24
@@ -125,7 +125,7 @@ https://goo.gl/u23dit
 The Public Key Pinning Extension for HTTP (HPKP) is a security feature that tells a web client to associate a specific cryptographic public key with a certain web server to prevent MITM attacks with forged certificates.
 
 *Browser compatibility:*
-  
+
 - IE: ?
 - Chrome: > 38
 - Firefox: > 35
@@ -393,7 +393,7 @@ The below code shows the current structure for the `main.js.coffee` file. We hav
 
 ```coffee
 # app/assets/javascripts/main.js.coffee
-window.RailsFoo = 
+window.RailsFoo =
   welcome:
     setup: ->
       @sayHello()
@@ -429,7 +429,7 @@ One of the most important thing in this era is data analysis, you can get those 
 For that reason, we have created a partial folder for including all the scripts you need for monitoring your app (yes, only a partial, there is nothing magical going on here), but bear in mind that in order for the analytics scripts to do their work you must include them in all existent pages in our web application. By the way, you can find this partial in `app/views/partials/_analytics_scripts.html.haml`.
 
 But even with that, we wanted to avoid including this partial in all our views (because we could forget!), even in all our layouts, for that reason, we have applied an inheritance approach for managing our layouts, we have created a **root** layout (you can see this located in `app/views/layouts/root.html.haml`). The main idea is that you use the **root** layout as a parent for all your new layouts, this way, you can include the common structures (like the analytical scripts) inside the **root** layout and reuse them in all your child layouts, you can see an example for this implementation in `app/views/layouts/application.html.haml` and `app/views/layouts/welcome.html.haml` layouts. The way you should think about "layout inheritance" is that you just reuse as much as you can, so, same as following DRY.
-  
+
 #### RAILS PANEL ([GITHUB REPO](https://github.com/dejan/rails_panel))
 **RailsPanel** is a Chrome extension for Rails development that will end your tailing of `development.log`. It hooks with you Chrome Dev Tools so that you have all information about your Rails app requests. Provides insight to db/rendering/total times, parameter list, rendered views and more.
 
