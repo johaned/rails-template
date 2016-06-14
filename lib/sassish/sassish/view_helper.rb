@@ -47,7 +47,7 @@ module Sassish
 
     #
     # Checks if the specific stylesheet resource exists using the selected checking strategy
-    # either hard disk verfication or caching approach. You can configure that using the config
+    # either hard disk verification or caching approach. You can configure that using the config
     # variable in the enevironment you wish
     #
     #   config.sassish.cache_stylesheet_resources = false # disable caching strategy in favor of hard-disk approach

@@ -154,7 +154,7 @@ Finally, these are our conclusions about the selected approach:
 
 - In order to be compliant with the [config section](http://12factor.net/config) in the [twelve factor app](http://12factor.net/) methodology, we can also use environment variables (ENV) whenever necessary. `config/secrets.yml` as other YAML files in Rails is passed first through ERB, this behaviour gives us the chance to set our ENV using `dotenv` which allows us to load environment variables from an `.env` file into ENV in the configured environment.
 
-- Keeping an easy deployment is a priority, and it is clear that using an ENV approach seems to cover this concern, but you can obtain the benefits of an hybrid solution by using a rich object support and ENV approach. Our experience has taught us that the sensitive data and the external integration credentials is a real concern for both the staging and production environments (especially for scenarios with limited control as Heroku), however you can manage this responsibility with ease, in your own servers you always can use capistrano (or similar solutions) for automating the remote installation of the `secrets.yml` file in each application server. On the other hand, you can also configure your application so that it’s compliant with Heroku. This template does not come bundled with capistrano or anything so you can choose what to do, but we recommend that you stick with the ["Store config in the environment" premise on 12factor](http://12factor.net/config).
+- Keeping an easy deployment is a priority, and it is clear that using an ENV approach seems to cover this concern, but you can obtain the benefits of a hybrid solution by using a rich object support and ENV approach. Our experience has taught us that the sensitive data and the external integration credentials is a real concern for both the staging and production environments (especially for scenarios with limited control as Heroku), however you can manage this responsibility with ease, in your own servers you always can use capistrano (or similar solutions) for automating the remote installation of the `secrets.yml` file in each application server. On the other hand, you can also configure your application so that it’s compliant with Heroku. This template does not come bundled with capistrano or anything so you can choose what to do, but we recommend that you stick with the ["Store config in the environment" premise on 12factor](http://12factor.net/config).
 
 To configure this template for a standard Heroku deployment, you just have to add/uncomment a little deployment hack that you can see at the end of `config/application.rb` file (remember that the `secrets.yml` file is gitignored) in order to copy the example files that come with environment variable fetching inside of them via erb.
 
@@ -202,7 +202,7 @@ At the end, you can customize several options for deploying Poltergeist changing
 
 We recommend that you always try to use version managers for everything you can, such as [phantomenv](https://github.com/boxen/phantomenv). for PhantomJS.
 ##### PhantomJS for Linux
-you can find an stable release here:
+you can find a stable release here:
 
 - [PhantomJS 1.9.7](https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2) (tested on Ubuntu 12.04)
 
@@ -298,7 +298,7 @@ You can see how to use Pry [here](http://www.sitepoint.com/rubyists-time-pry-irb
 
 We want to integrate a new way for structuring and generating our stylesheet resources in Rails. For that reason we have designed **Sassish**, and we will introduce you to it.
 
-Sassish (we are thinking about changing its name, also we are thinking in bundling this piece of code in a gem as well) helps you with how the style files are organized and how these are loaded, its approach is an hybrid combination between both the traditional assets precompile philosophy and the benefits of sass' features.
+Sassish (we are thinking about changing its name, also we are thinking in bundling this piece of code in a gem as well) helps you with how the style files are organized and how these are loaded, its approach is a hybrid combination between both the traditional assets precompile philosophy and the benefits of sass' features.
 
 The main idea is to simplify the development process by improving the organization, reusability and loading of the stylesheet resources, mitigating many issues that we've seen (it will help you for including an [OOCSS](http://www.slideshare.net/stubbornella/object-oriented-css) philosophy in the future).
 
@@ -446,7 +446,7 @@ Sometimes we wonder about what would be the best place for our domain logic, we 
 
 You can also find many online resources (posts, guides, tutorials, screencasts, etc.) about this topic (like [this](https://netguru.co/blog/service-objects-in-rails-will-help) and [this](https://blog.engineyard.com/2014/keeping-your-rails-controllers-dry-with-services)), but I like much this [post](http://adamniedzielski.github.io/blog/2014/11/25/my-take-on-services-in-rails/) as it exposes a pretty simple way for adopting the service object philosophy. I would like to emphasize the following aspects from it:
 
-- Naming: the service object name is a **non-finite verb phrase** (wth?-> [see here](https://en.wikipedia.org/wiki/Verb_phrase)), because it denotes an action which is associated with a single responsability. Semantically it is easier to handle regarding its invocation and portability.
+- Naming: the service object name is a **non-finite verb phrase** (wth?-> [see here](https://en.wikipedia.org/wiki/Verb_phrase)), because it denotes an action which is associated with a single responsibility. Semantically it is easier to handle regarding its invocation and portability.
 - Invoking: use a public method named **call**, “Lambdas and Procs also respond to `call` so in your tests you have the possibility to mock the service with a simple `Lambda`, which is quite convenient”.
 - Structuring & Organization: a folder named **services** at the same level of the **models** folder. You can also follow the same namespacing conventions using modules and classes as commonly used in Rails (code reloads too).
 - Dependency Injection: having a service with many responsibilities is a signal that you need to split it, but you can always use the **dependency injection** principle for fully isolating each service object.
