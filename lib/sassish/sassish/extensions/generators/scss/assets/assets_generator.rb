@@ -3,7 +3,7 @@ module Sassish
     module Generators
       module Scss
         module Assets
-          # An elegant way for monkey patching teh SCSS generator
+          # An elegant way for monkey patching the SCSS generator
           # TODO: refactor with the sass mokey patch logic
           module AssetsGenerator
             def self.included(klass)
